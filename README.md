@@ -58,7 +58,7 @@ A deep dive revealed a classic **Training-Serving Skew**:
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 * **Language:** Python 3.x
 * **Libraries:** `pandas`, `scikit-learn`, `numpy`, `seaborn` (for visualization)
 * **Algorithm:** Logistic Regression (Binary Classification)
