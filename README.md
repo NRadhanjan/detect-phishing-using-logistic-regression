@@ -1,9 +1,9 @@
-# 🛡️ Phishing URL Detection System (Post-Mortem Analysis)
+#  Phishing URL Detection System (Post-Mortem Analysis)
 
 > **Status:** *Archived / Retrospective Analysis* > **Model:** Logistic Regression  
 > **Focus:** Cybersecurity, Feature Engineering, Machine Learning
 
-## 📖 Overview
+##  Overview
 This project explores the application of **Machine Learning (Logistic Regression)** to cybersecurity, specifically for detecting malicious (phishing) URLs based purely on their **Lexical Features**. 
 
 Unlike traditional blacklisting methods which require constant updates, this approach attempts to classify URLs dynamically by analyzing their text structure (e.g., length, character counts, path depth) to identify suspicious patterns common in phishing attacks.
@@ -12,7 +12,7 @@ Unlike traditional blacklisting methods which require constant updates, this app
 
 ---
 
-## ⚙️ Methodology & Architecture
+##  Methodology & Architecture
 
 The system was designed to operate without external dependencies (like DNS or Whois) to ensure speed and privacy. The pipeline consists of three stages:
 
@@ -39,7 +39,7 @@ Since raw text cannot be fed directly into Logistic Regression, we extracted **2
 
 ---
 
-## 📉 Retrospective: The "Training-Serving Skew" Challenge
+##  Retrospective: The "Training-Serving Skew" Challenge
 
 While the model achieved a **Training Accuracy of ~96.3%**, the project encountered a critical issue during the real-time inference phase.
 
@@ -52,7 +52,7 @@ A deep dive revealed a classic **Training-Serving Skew**:
 2.  **Normalization Errors:** The live data was not normalized (scaled) in the same way as the training data.
 3.  **Result:** The model received input vectors that were drastically different in scale from what it learned, causing the intercept term to dominate the decision boundary.
 
-### 📝 Lessons Learned
+###  Lessons Learned
 * **Pipeline Consistency:** The feature extraction code must be identical for both training and inference. Ideally, this logic should be encapsulated in a shared library or class.
 * **Unit Testing for Data:** "Data Unit Tests" are necessary to verify that a URL produces the exact same feature vector in the training pipeline as it does in the production pipeline.
 
